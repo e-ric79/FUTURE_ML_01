@@ -1,105 +1,50 @@
-📊 Sales Forecasting for Retail Businesses
+📊 Retail Sales Forecasting System
+An end-to-end forecasting engine designed to help retail businesses transition from reactive to proactive decision-making. This tool predicts monthly sales 6 months into the future, providing data-backed confidence for inventory, staffing, and budgeting.
 
-Time Series Forecasting | Business Analytics
+🛠 Business Problem
+Retailers often struggle with the "Bullwhip Effect," where inaccurate demand forecasting leads to:
 
-Overview
+Overstocking: Tied-up capital and high storage costs.
 
-This project builds a monthly sales forecasting system for a retail business using historical sales data. The goal was to help decision-makers plan inventory, staffing, and budgets by predicting sales 6 months into the future while accounting for uncertainty and seasonality.
+Understocking: Missed revenue opportunities and poor customer retention.
 
-Problem
+This project solves this by delivering a probabilistic forecast—giving businesses not just one number, but a range of possibilities (Conservative vs. Aggressive).
 
-Retail businesses often make operational decisions without reliable forecasts, leading to:
+🚀 Key Features
+Universal Data Ingestion: Dynamic column mapping allows users to upload any CSV regardless of column naming conventions.
 
-Overstocking → wasted capital and storage costs
+Automated Seasonality: Built-in detection for US holidays and recurring annual retail cycles (e.g., the "Christmas Spike").
 
-Understocking → lost sales and customer dissatisfaction
+Accuracy Tracking: Real-time calculation of MAPE (Mean Absolute Percentage Error) and Model Accuracy.
 
-Accurate forecasting is essential for balancing supply and demand.
+Interactive Strategy Guide: Categorical filtering to isolate specific departments (e.g., Electronics vs. Furniture).
 
-Objective
+🧠 The Approach
+Exploratory Data Analysis (EDA): Performed seasonal decomposition to isolate the trend from the "noise" of monthly fluctuations.
 
-Forecast monthly sales 6 months ahead
+Modeling: Evaluated multiple models (XGBoost, ARIMA, Prophet). Prophet was selected for its superior handling of holiday effects and its ability to work well with smaller datasets (~4 years of data).
 
-Identify seasonal and long-term trends
+Validation: Used a temporal train/test split to ensure the model could generalize to future months.
 
-Provide confidence intervals for conservative and aggressive planning
+📈 Technical Insights
+MAPE: 10.2% (The model is ~90% accurate on historical trends).
 
-Use models effective on small datasets
+Seasonality: Identified a consistent ~60% sales surge during Nov-Dec.
 
-Data
+Growth: Captured a steady 15% YoY growth trend, allowing for scaling predictions.
 
-Superstore retail sales dataset
+💻 Tech Stack
+Language: Python
 
-~48 months of historical data
+Forecasting: Facebook Prophet
 
-Daily transactions aggregated into monthly sales
+Data Processing: Pandas, NumPy
 
-Approach
+Frontend: Streamlit
 
-Data Preparation
+Visualization: Matplotlib, Plotly
 
-Cleaned and transformed dates
+🏁 Key Takeaways
+Simplicity Wins: For retail, domain-specific models (Prophet) often outperform complex black-box models (XGBoost) because they respect the human nature of shopping cycles.
 
-Aggregated sales to monthly totals
-
-Exploratory Analysis
-
-Visualized sales trends
-
-Performed seasonal decomposition (trend, seasonality, residuals)
-
-Modeling
-
-Evaluated Prophet vs ML approaches (XGBoost)
-
-Selected Prophet for its strong seasonality handling and interpretability
-
-Trained and validated using a train/test split
-
-Forecasting
-
-Retrained on full dataset
-
-Generated 6-month forward forecast with uncertainty bounds
-
-Key Insights
-
-Strong Nov–Dec seasonality (~60% sales spike)
-
-Significant Jan–Feb decline
-
-Consistent ~15% year-over-year growth
-
-Unexpected March surge, likely tied to Q1 activity
-
-Model Performance
-
-MAE: ~$12,000
-
-RMSE: ~$15,000
-
-R²: ~0.57
-
-Prophet outperformed more complex models by effectively capturing recurring seasonal patterns.
-
-Business Impact
-
-Enables proactive inventory and staffing decisions
-
-Supports conservative vs aggressive budgeting using forecast ranges
-
-A single accurate forecast identified a potential $35k+ revenue upside by preventing stock-outs during peak demand
-
-Tech Stack
-
-Python | pandas | NumPy | Prophet | Matplotlib | statsmodels | scikit-learn
-
-Key Takeaways
-
-Simpler, domain-specific models can outperform complex ML
-
-Seasonality is critical in retail forecasting
-
-Forecast uncertainty is as important as point predictions
-
-Strong business context turns models into impact
+Uncertainty is an Asset: Showing the "Lower Bound" and "Upper Bound" is more useful for a CFO than a single point prediction.
